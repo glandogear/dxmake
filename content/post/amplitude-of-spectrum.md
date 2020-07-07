@@ -5,7 +5,7 @@ draft: false
 tags: ["数字信号处理","FFT","频谱","Matlab"]
 categories: ["信号处理"]
 mathjax: true
-lastmod: 2020-04-09 15:24:17
+lastmod: 2020-07-06 22:18:47
 ---
 
 在使用FFT函数运算时，经常能够看到信号频谱的幅值非常大，而信号在时域中并没有这种数量级的参数，令人疑惑。
@@ -29,7 +29,7 @@ signal & = sin(2\pi * 20 * t) \\\
 \end{aligned}
 $$
 
-```
+```matlab
 Fs = 100;
 Ts = 1./Fs;
 pointNum = 1000;
@@ -39,7 +39,9 @@ signal = sin(2*pi*20*t);
 
 ## 累积幅度谱
 
-`fftAmplitudeCumulation = abs(fftshift(fft(signal)))`
+```matlab
+fftAmplitudeCumulation = abs(fftshift(fft(signal)))
+```
 
 对信号求fft，并进行循环移位和频率轴映射，可以得到最简单的一个频谱，我称之为累积幅度谱。
 其中每个点的值代表相应频率信号分量的幅度在采样点上的累积，或者说幅度对采样点的积分。
@@ -57,7 +59,9 @@ signal = sin(2*pi*20*t);
 
 ## 平均幅度谱
 
-`fftAmplitudeAverage = fftAmplitudeCumulation ./ pointNum`
+```matlab
+fftAmplitudeAverage = fftAmplitudeCumulation ./ pointNum
+```
 
 前面的累积幅度谱是与采样点数相关的，如果一个信号是功率信号，而我想要知道在这段时间中它平均的幅度，
 就可以使用平均幅度谱，表示每个频率的基信号在这段时间的幅度。
@@ -69,7 +73,9 @@ signal = sin(2*pi*20*t);
 
 ## 平均功率谱 - 线性
 
-`fftPowerAverageLinear = fftAmplitudeAverage .^ 2`
+```matlab
+fftPowerAverageLinear = fftAmplitudeAverage .^ 2
+```
 
 由于FFT不能表示信号的变化过程，只能表示一段时间内的平均情况，因此在这里功率和能量是没有区别的。
 正弦信号的功率为0.5Watt。
@@ -78,7 +84,9 @@ signal = sin(2*pi*20*t);
 
 ## 平均功率谱 - 对数
 
-`fftPowerAverageLogarithm = 10*log(1000*fftPowerAverageLinear)/log(10)`
+```matlab
+fftPowerAverageLogarithm = 10*log(1000*fftPowerAverageLinear)/log(10)
+```
 
 以dBm表示的信号功率。
 ![双边平均功率谱-对数](/amplitude-of-spectrum/04-1.power_average_logarithm_double.svg "双边平均功率谱-对数")
