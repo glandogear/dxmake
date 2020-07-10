@@ -1,6 +1,7 @@
 ---
 title: "STM32初步，第一段代码、编译流程、烧录"
 date: 2020-07-07T15:23:30+08:00
+lastmod: 2020-07-10T11:27:36+08:00
 draft: false
 tags: ["STM32","ARM","GCC","C"]
 categories: ["嵌入式"]
@@ -30,7 +31,7 @@ categories: ["嵌入式"]
 
 ### 库
 
-使用ST公司提供的CMSIS库（微控制器软件接口标准，Cortex Microcontroller Software Interface Standard）。
+使用ST公司提供的STM32标准外设软件库，其中包括CMSIS的实现（微控制器软件接口标准，Cortex Microcontroller Software Interface Standard）。
 
 [STM32标准外设软件库](https://www.st.com/zh/embedded-software/stm32-standard-peripheral-libraries.html/)
 
@@ -39,7 +40,7 @@ categories: ["嵌入式"]
 - 板子的原理图。
 - STM32F401CE的数据手册和参考手册。[产品页面](https://www.st.com/content/st_com/zh/products/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus/stm32-high-performance-mcus/stm32f4-series/stm32f401/stm32f401ce.html)
 - AN2606:STM32微控制器系统存储器自举模式。[PDF](https://www.st.com/content/ccc/resource/technical/document/application_note/b9/9b/16/3a/12/1e/40/0c/CD00167594.pdf/files/CD00167594.pdf/jcr:content/translations/zh.CD00167594.pdf)
-- CMSIS文档，包含在CMSIS库中。
+- STM32标准外设软件库文档，包含在库文件夹中。
 - [GCC文档](https://gcc.gnu.org/onlinedocs/gcc/)。
 
 ## 关于芯片
@@ -75,7 +76,7 @@ TOP
     `-- build
 ```
 
-顶层目录下的makefile文件为一些基本的变量设置。000-libraries文件夹下存放库文件，其中就包含STM32F4xx的CMSIS库。001-GPIOToggle是我的第一个工程，使用按键控制LED的亮灭，其中lib文件夹下是从CMSIS中拷贝来的可能根据工程而修改的代码。
+顶层目录下的makefile文件为一些基本的变量设置。000-libraries文件夹下存放库文件，其中就包含STM32F4xx的标准外设软件库和CMSIS实现。001-GPIOToggle是我的第一个工程，使用按键控制LED的亮灭，其中lib文件夹下是从CMSIS中拷贝来的可能根据工程而修改的代码。
 
 ## 代码编写
 
@@ -99,7 +100,7 @@ TOP
 
 每个寄存器的具体内容，在8.4节，GPIO registers中都有说明，包括每个寄存器的复位值、对应端口的bit范围、是否可读写、以及设定值的意义。例如GPIOC_MODER[27:26]用来控制PC13的功能，00表示输入，01表示输出。除了输入输出，还可以设置输出方式（推挽和开漏）、端口速度、上拉下拉。这里我将PC13设置为推挽低速输出，PA0设置为上拉低速输入。
 
-那么该如何在C代码中设置这些寄存器呢？根据CMSIS库文档中CMSIS-CORE/Peripheral Access一节，可以使用`GPIOC->MODER`的形式控制寄存器，或者查看CMSIS头文件`stm32f4xx.h`的源代码，得知GPIO和GPIO_TypeDef的定义：
+那么该如何在C代码中设置这些寄存器呢？根据CMSIS文档中CMSIS-CORE/Peripheral Access一节，可以使用`GPIOC->MODER`的形式控制寄存器，或者查看CMSIS头文件`stm32f4xx.h`的源代码，得知GPIO和GPIO_TypeDef的定义：
 
 ```c
 #define GPIOC      ((GPIO_TypeDef *) GPIOC_BASE)
