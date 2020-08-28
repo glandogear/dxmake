@@ -1,7 +1,7 @@
 ---
 title: "我的装机软件列表 Win/Linux"
 date: 2020-08-28T17:04:24+08:00
-draft: true
+draft: false
 tags: ["装系统","软件"]
 categories: ["软件"]
 ---
