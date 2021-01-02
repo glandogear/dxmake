@@ -22,8 +22,8 @@ categories: ["备份"]
 下面是我主要的目录结构：
 
 ```plain
-|--Archives
-|--Books
+|--Archive
+|--Book
 |  |--ComputerScience
 |  |--ComputerTechnology
 |  |  |--Programming
@@ -33,41 +33,41 @@ categories: ["备份"]
 |  |--Mathematics
 |  `--Physics
 |--Data
-|--Documents
+|--Document
 |  |--Hardware
 |  |  |--ST
 |  |  `--Xilinx
 |  |--Notice
 |  `--Policy
 |--KnowledgeBase
-|  |--Courses
-|  `--Papers
+|  |--Course
+|  `--Paper
 |--Media
-|  |--Musics
-|  |--Pictures
-|  `--Videos
+|  |--Music
+|  |--Picture
+|  `--Video
 |--Misc
-|--Projects
-|  `--00_libraries
-`--Resources
-   |--Libraries
+|--Project
+|  `--00_library
+`--Resource
+   |--Library
    |--Software
-   `--OSImages
+   `--OSImage
 ```
 
 首先要注意的一点是**分类是具有个人特色的**，比如我有很多电子书，我就把Books单独拿出来做了一个目录，我的文学书籍很少于是也没有继续细分。整个结构应该根据个人的情况调整。之后是目录说明：
 
-- Archives，存档：存储简历、考试信息、通讯录、证件、证件照片、账单、收藏夹、配置文件等。
-- Books，书籍：分类建议参考图书馆。
+- Archive，存档：存储简历、考试信息、通讯录、证件、证件照片、账单、收藏夹、配置文件等。
+- Book，书籍：分类建议参考图书馆。
 - Data，数据：实验数据、测试数据、原始资料等。
-- Documents，文档：硬件datasheet、指南、通知、政策文件等，建议首先按来源分类，其次按内容分类。
+- Document，文档：硬件datasheet、指南、通知、政策文件等，建议首先按来源分类，其次按内容分类。
 - KnowledgeBase，知识：学习历程、课程、论文等，课程按照时间分类。
 - Media，媒体：音乐、图片、视频，应该区分自己拍的照片和视频。
 - Misc，杂项：放杂物。
-- Projects，工程：用于工作目录，00_libraries存放自己的代码库。
-- Resources，资源：外部代码库、软件安装包、系统镜像等。
+- Project，工程：用于工作目录，00_libraries存放自己的代码库。
+- Resource，资源：外部代码库、软件安装包、系统镜像等。
 
-建议相同资源手动加一个编号，比如Projects中的00_libraries。当需要单独工作于一个目录时建议使用驱动器映射/快捷方式/文件夹链接等方式。数据的完好保存不在于临时拷贝，在于**及时正确的备份**；版本控制也不在于临时拷贝。
+建议相同资源手动加一个编号，比如Projects中的00_library。当需要单独工作于一个目录时建议使用驱动器映射/快捷方式/文件夹链接等方式。数据的完好保存不在于临时拷贝，在于**及时正确的备份**；版本控制也不在于临时拷贝。
 
 ## 一点总结
 
